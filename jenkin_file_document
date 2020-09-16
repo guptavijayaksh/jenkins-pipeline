@@ -70,7 +70,7 @@ Jenkinsfile code:
 
 node{
 stage('SCM Checkout'){
-git 'https://username:J1W6gbhUu_RQTxodDuBC@gitlab.com/ajha/demo.git'
+git ' https://username:TokenValue@gitlab.com/gitlab_username/gitLabprojectName.git'
 
 }
 stage('Compile-Package'){

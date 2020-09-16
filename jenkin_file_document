@@ -1,0 +1,109 @@
+Continuous Integration CI Process Step By Step:
+
+1. Download Jenkins (link - http://mirror.serverion.com/jenkins/windows-stable/jenkins-2.235.1.zip)
+
+2. Install Jenkins --- Type Dynamic password located in c:program files (C:\Program Files (x86)\Jenkins\secrets\Initial Password)
+
+3.Install first option
+
+4. set your username and password for Jenkins
+
+5.Go To Manage Jenkins -- System Configuration -->Global Tool configuration
+
+6. set JDK Installation:
+Name :Java
+JAVA_HOME :C:\Program Files\Java\jdk1.8.0_202
+
+7.Set Git Installation:
+Name: Git
+Path to Git executable: C:\Program Files\Git\bin\git.exe
+
+8. Maven Path:
+Name: Maven
+MAVEN_HOME: C:\Program Files\apache-maven-3.6.3-bin\apache-maven-3.6.3
+
+9.Right click on This PC -- Properties -- Advance Setting --Environment Variable-- upper New -- Set JDK Path
+
+JDK Path:
+Variable Name : JAVA-HOME
+Variable Value: C:\Program Files\Java\jdk1.8.0_202
+
+JRE Path:
+Variable Name : JRE-HOME
+Variable Value: Variable Name : JAVA-HOME
+Variable Value: C:\Program Files\Java\jre1.8.0_241
+
+10.Go To Manage Jenkins -- System Configuration -- Configure System -- Global Properties
+
+Tick the check box of Environment Variable
+In List of variables :
+Name :JAVA_HOME
+Value : C:\Program Files\Java\jdk1.8.0_202
+then Tick the check box of Tool Locations
+
+11.a.fisrt create project on gitlab (note: please don't select any file like Initialize repository with a README in gitlab)
+
+b.your project available in eclipse then right click on project and click on Team -- share project after that you click on checkbox then click on project.
+
+c.click on create repository and click ok
+
+d.again right click on project and click on team ---> share ----> commit after that you click on commit.
+
+e.you copy path of gitlab project those you create
+f.remote name - origin
+g.URI is - https://gitlab.com/username/jenkins_test.git
+h.your username and password then click on next ---> next ---> next ---> finish.
+
+Optional if above Process 11 is not working then try this Process (Gitlab :
+create project -- Push your eclipse project on gitlab
+To push through gitBash:
+a. git init
+b. git remote add origin "project origin from gitlab"
+c. git add .
+d. git commit -m "Initial commit"
+e. git push -u origin master)
+
+f. Go to git lab under project right side of branch name click on + icon -- New file -- name of New file will be-- Jenkinsfile
+g. copy below code which is Changeable in Jenkinsfile:
+
+Jenkinsfile code:
+
+node{
+stage('SCM Checkout'){
+git 'https://username:J1W6gbhUu_RQTxodDuBC@gitlab.com/ajha/demo.git'
+
+}
+stage('Compile-Package'){
+bat 'mvn package'
+}
+
+}
+
+h. commit changes
+
+12 . Create Token on gitLab:
+
+Creating a personal access token
+You can create as many personal access tokens as you like from your GitLab profile.
+
+*Log in to GitLab.(Access token)
+
+a. In the upper-right corner, click your avatar and select Settings.
+b. On the User Settings menu, select Access Tokens.
+c. Choose a name and optional expiry date for the token.
+d. Choose the desired scopes.
+e. Click the Create personal access token button.
+f. Save the personal access token somewhere safe. Once you leave or refresh the page, you won’t be able to access it again.
+
+13.To create A Job in Jenkins click on New Items
+14 . New items -- Enter Item name -- Select Project type as Pipeline --ok
+15. Go To Job -- left side configure -- write Description -- Pipeline -- Definition-- select Pipeline Script from Scm-- SCM --Git
+16 . Repository under Git
+
+Repository URL : https://username:TokenValue@gitlab.com/gitlab_username/gitLabprojectName.git
+then
+Save
+
+17. Select Job in Jenkin -- Build Now -- then go to console -- check status of Success and failure of Job
+
+

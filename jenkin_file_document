@@ -1,5 +1,11 @@
 Continuous Integration CI Process Step By Step:
 
+jenkings runs on default port : 8080
+
+
+
+
+
 1. Download Jenkins (link - http://mirror.serverion.com/jenkins/windows-stable/jenkins-2.235.1.zip)
 
 2. Install Jenkins --- Type Dynamic password located in c:program files (C:\Program Files (x86)\Jenkins\secrets\Initial Password)
@@ -105,5 +111,21 @@ then
 Save
 
 17. Select Job in Jenkin -- Build Now -- then go to console -- check status of Success and failure of Job
+
+
+18. Optional(if we have multiple project Inside a separate folder then how will access those project)
+a) login into Jenkins via http://localhost:8080/
+b) Click on New Item on Dashboard
+c)Select freestyle Project Type and give Name of Project – click ok
+d)go to new created project – configure
+e) Write Description
+f) In source Code Management Select Git
+g) give gitlab Path where your project is stored on gitLab
+e.g. https://gitlab.com/gitlab_username/gitLabprojectName.git
+h) select branch – master or your gitlab branch name
+i)Click on Add Behaviours – select Sparse Checkout Path –give folder name – click on add
+k)click on Save and Apply
+
+
 
 
